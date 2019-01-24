@@ -41,7 +41,7 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # Fix VTE configuration
-if [ "$TILIX_ID" ] || [ "$VTE_VERSION" ]; then
+if [ "${TILIX_ID}" ] || [ "${VTE_VERSION}" ]; then
 	if [ -f /etc/profile.d/vte.sh ]; then
 		# shellcheck disable=SC1091
 		. /etc/profile.d/vte.sh
@@ -52,7 +52,7 @@ if [ "$TILIX_ID" ] || [ "$VTE_VERSION" ]; then
 fi
 
 function use_colors {
-	case "$TERM" in
+	case "${TERM}" in
 		xterm-color|*-256color)
 			return 0
 			;;
@@ -102,27 +102,27 @@ function custom_prompt {
 	fi
 
 	local sign=''
-	if [ "$return_code" = 0 ]; then
-		sign="$boldgreen❯$reset"
+	if [ "${return_code}" = 0 ]; then
+		sign="${boldgreen}❯${reset}"
 	else
-		sign="$boldred❯$reset"
+		sign="${boldred}❯${reset}"
 	fi
 
 	local user=''
-	if [ "$UID" = 0 ]; then
-		user="$boldred\u$reset"
+	if [ "${UID}" = 0 ]; then
+		user="${boldred}\u${reset}"
 	else
-		user="$boldblue\u$reset"
+		user="${boldblue}\u${reset}"
 	fi
 
 	local host=''
-	if [[ -n "$SSH_CONNECTION" ]] || [ -f /.dockerenv ]; then
-		host="$boldmagenta@\h$reset"
+	if [[ -n "${SSH_CONNECTION}" ]] || [ -f /.dockerenv ]; then
+		host="${boldmagenta}@\h${reset}"
 	else
 		host=''
 	fi
 
-	local workdir="$green\w$reset"
+	local workdir="${green}\w${reset}"
 
 	# https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
 	local vte_fix=''
@@ -130,7 +130,7 @@ function custom_prompt {
 		vte_fix="\[$(__vte_osc7)\]"
 	fi
 
-	PS1="$user$host $workdir $sign $vte_fix"
+	PS1="${user}${host} ${workdir} ${sign} ${vte_fix}"
 }
 
 PROMPT_COMMAND="custom_prompt"

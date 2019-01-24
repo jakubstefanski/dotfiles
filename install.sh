@@ -14,7 +14,7 @@ check_link() {
 	local link=${2}
 
 	if [ "${target}" -ef "${link}" ]; then
-		symlinked+=("$2")
+		symlinked+=("${link}")
 	elif [ -e "${link}" ]; then
 		read -r -p "replace '${link}'? [y/N] "
 		if [[ ${REPLY,,} =~ ^[Yy]([Ee][Ss])?$ ]]; then
@@ -30,11 +30,11 @@ check_link() {
 	fi
 }
 
-check_link "${dir}/bashrc" "$HOME/.bashrc"
-check_link "${dir}/profile" "$HOME/.profile"
+check_link "${dir}/bashrc" "${HOME}/.bashrc"
+check_link "${dir}/profile" "${HOME}/.profile"
 
 function use_colors {
-	case "$TERM" in
+	case "${TERM}" in
 		xterm-color|*-256color) return 0;;
 	esac
 

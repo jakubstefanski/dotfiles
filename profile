@@ -5,10 +5,10 @@
 # exists.
 
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
-	if [ -f "$HOME/.bashrc" ]; then
+if [ -n "${BASH_VERSION}" ]; then
+	if [ -f "${HOME}/.bashrc" ]; then
 		# shellcheck source=/dev/null
-		. "$HOME/.bashrc"
+		. "${HOME}/.bashrc"
 	fi
 fi
 
