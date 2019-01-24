@@ -9,11 +9,6 @@ set -e
 
 dir="$(dirname "$(realpath "${0}")")"
 
-new=('New:')
-replaced=('Replaced:')
-symlinked=('Already symlinked:')
-skipped=('Skipped:')
-
 check_link() {
 	local target=${1}
 	local link=${2}
@@ -35,19 +30,46 @@ check_link() {
 	fi
 }
 
-# bash
 check_link "${dir}/bashrc" "$HOME/.bashrc"
 check_link "${dir}/profile" "$HOME/.profile"
 
+function use_colors {
+	case "$TERM" in
+		xterm-color|*-256color) return 0;;
+	esac
+
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		return 0
+	fi
+
+	echo return 1
+}
+
 print_group() {
-	group=("$@")
-	if [ ${#group[@]} -gt 1 ]; then
-		printf "%s\n" "${group[@]}"
+	local name="${1}"
+	shift
+	local files=("${@}")
+
+	if [ ${#files[@]} -gt 0 ]; then
+		echo -e "${name}"
+		printf "%s\n" "${files[@]}"
 	fi
 }
 
 # print summary
-print_group "${new[@]}"
-print_group "${replaced[@]}"
-print_group "${symlinked[@]}"
-print_group "${skipped[@]}"
+boldgreen=''
+boldred=''
+boldblue=''
+reset=''
+
+if use_colors; then
+	boldgreen='\e[1;32m'
+	boldred='\e[1;31m'
+	boldblue='\e[1;34m'
+	reset='\e[0m'
+fi
+
+print_group "${boldgreen}New:${reset}" "${new[@]}"
+print_group "${boldgreen}Already symlinked:${reset}" "${symlinked[@]}"
+print_group "${boldblue}Replaced:${reset}" "${replaced[@]}"
+print_group "${boldred}Skipped:${reset}" "${skipped[@]}"
