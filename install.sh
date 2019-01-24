@@ -37,6 +37,7 @@ check_link() {
 
 # bash
 check_link "${dir}/bashrc" "$HOME/.bashrc"
+check_link "${dir}/profile" "$HOME/.profile"
 
 print_group() {
 	group=("$@")
