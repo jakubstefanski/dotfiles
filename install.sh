@@ -34,6 +34,7 @@ check_link "${dir}/bashrc" "${HOME}/.bashrc"
 check_link "${dir}/profile" "${HOME}/.profile"
 check_link "${dir}/vimrc" "${HOME}/.vimrc"
 check_link "${dir}/gvimrc" "${HOME}/.gvimrc"
+check_link "${dir}/gitconfig" "${HOME}/.gitconfig"
 
 mkdir -p "${HOME}/.gnupg"
 check_link "${dir}/gnupg/gpg.conf" "${HOME}/.gnupg/gpg.conf"

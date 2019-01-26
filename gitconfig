@@ -1,0 +1,6 @@
+[user]
+	name = "Jakub Stefanski"
+	email = "js@jakubstefanski.com"
+	signingkey = "58644CF257490316"
+[commit]
+	gpgsign = true
