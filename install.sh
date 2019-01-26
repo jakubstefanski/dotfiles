@@ -32,6 +32,7 @@ check_link() {
 
 check_link "${dir}/bashrc" "${HOME}/.bashrc"
 check_link "${dir}/profile" "${HOME}/.profile"
+check_link "${dir}/vimrc" "${HOME}/.vimrc"
 
 function use_colors {
 	case "${TERM}" in
@@ -57,11 +58,6 @@ print_group() {
 }
 
 # print summary
-boldgreen=''
-boldred=''
-boldblue=''
-reset=''
-
 if use_colors; then
 	boldgreen='\e[1;32m'
 	boldred='\e[1;31m'
