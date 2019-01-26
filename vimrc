@@ -98,17 +98,6 @@ nnoremap <Leader>b :exe "b ".g:lastbuf<CR>
 nnoremap <Leader>t :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>n :nohl<CR>
 
-" Show leading spaces as gray dots
-highlight Conceal guibg=NONE ctermbg=NONE guifg=Gray ctermfg=Gray
-match Conceal /\(^[ \t]*\)\@<= /
-
-augroup HighlightLeadingSpaces
-	autocmd BufWinEnter * setl conceallevel=2 concealcursor=nv
-	autocmd BufWinEnter * syn match Conceal /\(^[ \t]*\)\@<= / containedin=ALL conceal cchar=·
-	autocmd BufReadPre * setl conceallevel=2 concealcursor=nv
-	autocmd BufReadPre * syn match Conceal /\(^[ \t]*\)\@<= / containedin=ALL conceal cchar=·
-augroup END
-
 " Highlight trailing whitespaces
 highlight TrailingWhitespaces ctermbg=Red guibg=Red
 match TrailingWhitespaces /\s\+$/
