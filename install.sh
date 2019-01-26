@@ -29,10 +29,15 @@ check_link() {
 }
 
 dir="$(dirname "$(realpath "${0}")")"
+
 check_link "${dir}/bashrc" "${HOME}/.bashrc"
 check_link "${dir}/profile" "${HOME}/.profile"
 check_link "${dir}/vimrc" "${HOME}/.vimrc"
 check_link "${dir}/gvimrc" "${HOME}/.gvimrc"
+
+mkdir -p "${HOME}/.gnupg"
+check_link "${dir}/gnupg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
+check_link "${dir}/gnupg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
 
 function use_colors {
 	case "${TERM}" in
