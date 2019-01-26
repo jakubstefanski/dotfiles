@@ -7,8 +7,6 @@ fi
 
 set -e
 
-dir="$(dirname "$(realpath "${0}")")"
-
 check_link() {
 	local target=${1}
 	local link=${2}
@@ -30,9 +28,11 @@ check_link() {
 	fi
 }
 
+dir="$(dirname "$(realpath "${0}")")"
 check_link "${dir}/bashrc" "${HOME}/.bashrc"
 check_link "${dir}/profile" "${HOME}/.profile"
 check_link "${dir}/vimrc" "${HOME}/.vimrc"
+check_link "${dir}/gvimrc" "${HOME}/.gvimrc"
 
 function use_colors {
 	case "${TERM}" in

@@ -99,7 +99,7 @@ nnoremap <Leader>t :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>n :nohl<CR>
 
 " Show leading spaces as gray dots
-highlight Conceal guibg=NONE ctermbg=NONE ctermfg=Gray
+highlight Conceal guibg=NONE ctermbg=NONE guifg=Gray ctermfg=Gray
 match Conceal /\(^[ \t]*\)\@<= /
 
 augroup HighlightLeadingSpaces
