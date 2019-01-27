@@ -151,3 +151,8 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
+
+# Enable direnv if available
+if command -v direnv &>/dev/null; then
+	eval "$(direnv hook $0)"
+fi
