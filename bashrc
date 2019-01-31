@@ -85,44 +85,35 @@ fi
 function custom_prompt {
 	local return_code=$?
 
-	local green=''
-	local boldgreen=''
-	local boldred=''
-	local boldblue=''
-	local boldmagenta=''
+	local bold=''
+	local blue=''
+	local red=''
 	local reset=''
 
 	if use_colors; then
-		green='\[\e[0;32m\]'
-		boldgreen='\[\e[1;32m\]'
-		boldred='\[\e[1;31m\]'
-		boldblue='\[\e[1;34m\]'
-		boldmagenta='\[\e[1;35m\]'
+		bold='\[\e[1m\]'
+		blue='\[\e[34m\]'
+		red='\[\e[31m\]'
 		reset='\[\e[0m\]'
 	fi
 
-	local sign=''
-	if [ "${return_code}" = 0 ]; then
-		sign="${boldgreen}❯${reset}"
-	else
-		sign="${boldred}❯${reset}"
-	fi
-
-	local user=''
+	local mark='$'
+	local user="${bold}\u"
 	if [ "${UID}" = 0 ]; then
-		user="${boldred}\u${reset}"
-	else
-		user="${boldblue}\u${reset}"
+		mark='#'
+		user="${bold}${red}\u"
 	fi
-
-	local host=''
 	if [[ -n "${SSH_CONNECTION}" ]] || [ -f /.dockerenv ]; then
-		host="${boldmagenta}@\h${reset}"
-	else
-		host=''
+		user+="@\h"
 	fi
+	user+="${reset}"
 
-	local workdir="${green}\w${reset}"
+	local workdir="${blue}\w${reset}"
+
+	local sign="${mark}"
+	if [ "${return_code}" != 0 ]; then
+		sign="${red}${mark}${reset}"
+	fi
 
 	# https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
 	local vte_fix=''
@@ -130,7 +121,7 @@ function custom_prompt {
 		vte_fix="\[$(__vte_osc7)\]"
 	fi
 
-	PS1="${user}${host} ${workdir} ${sign} ${vte_fix}"
+	PS1="${user} ${workdir} ${sign} ${vte_fix}"
 }
 
 PROMPT_COMMAND="custom_prompt"
@@ -154,5 +145,5 @@ fi
 
 # Enable direnv if available
 if command -v direnv &>/dev/null; then
-	eval "$(direnv hook $0)"
+	eval "$(direnv hook "$0")"
 fi
