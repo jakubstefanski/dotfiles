@@ -85,9 +85,9 @@ function main() {
 		local target="${dir}/${file#./}"
 		local link="${HOME}/.${file#./}"
 		check_link "${target}" "${link}"
-	done < <(find "$(dirname "${0}")" \
-		-type f -not -path '*/\.*' \
-		-type f -not -path './README.md' \
+	done < <(find "$(dirname "${0}")" -type f \
+		-not -path '*/\.*' \
+		-not -path './README.md' \
 		-not -path "${0}" \
 		-print0 |
 		sort -z)
