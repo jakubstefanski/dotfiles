@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if (( ${BASH_VERSION%%.*} < 4 )) ; then
+if ((${BASH_VERSION%%.*} < 4)); then
 	echo "${0} requires Bash version 4 or later" 1>&2
 	exit 1
 fi
 
-set -e
+set -euo pipefail
 
-check_link() {
+function check_link() {
 	local target=${1}
 	local link=${2}
 
@@ -23,42 +23,29 @@ check_link() {
 			skipped+=("${link}")
 		fi
 	else
+		mkdir -p "$(dirname "${link}")"
 		ln -sf "${target}" "${link}"
 		new+=("${link}")
 	fi
 }
 
-dir="$(dirname "$(realpath "${0}")")"
+function should_use_colors() {
+	if [[ ! -t 1 ]]; then
+		return 1 # not a terminal, for example pager
+	fi
 
-check_link "${dir}/bashrc" "${HOME}/.bashrc"
-check_link "${dir}/profile" "${HOME}/.profile"
-check_link "${dir}/vimrc" "${HOME}/.vimrc"
-check_link "${dir}/gvimrc" "${HOME}/.gvimrc"
-check_link "${dir}/gitconfig" "${HOME}/.gitconfig"
-
-mkdir -p "${HOME}/.gnupg"
-check_link "${dir}/gnupg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
-check_link "${dir}/gnupg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
-
-mkdir -p "${HOME}/.config/tilix"
-check_link "${dir}/config/tilix/schemes" "${HOME}/.config/tilix/schemes"
-
-mkdir -p "${HOME}/.config/Code/User"
-check_link "${dir}/config/Code/User/settings.json" "${HOME}/.config/Code/User/settings.json"
-
-function use_colors {
 	case "${TERM}" in
-		xterm-color|*-256color) return 0;;
+	xterm-color | *-256color) return 0 ;;
 	esac
 
 	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 		return 0
 	fi
 
-	echo return 1
+	return 1
 }
 
-print_group() {
+function print_group() {
 	local name="${1}"
 	shift
 	local files=("${@}")
@@ -69,15 +56,43 @@ print_group() {
 	fi
 }
 
-# print summary
-if use_colors; then
-	boldgreen='\e[1;32m'
-	boldred='\e[1;31m'
-	boldblue='\e[1;34m'
-	reset='\e[0m'
-fi
+function print_summary() {
+	local bold=''
+	local red=''
+	local green=''
+	local blue=''
+	local reset=''
 
-print_group "${boldgreen}New:${reset}" "${new[@]}"
-print_group "${boldgreen}Already symlinked:${reset}" "${symlinked[@]}"
-print_group "${boldblue}Replaced:${reset}" "${replaced[@]}"
-print_group "${boldred}Skipped:${reset}" "${skipped[@]}"
+	if should_use_colors; then
+		bold='\e[1m'
+		red='\e[31m'
+		green='\e[32m'
+		blue='\e[34m'
+		reset='\e[0m'
+	fi
+
+	print_group "${bold}${green}New:${reset}" "${new[@]}"
+	print_group "${bold}${green}Already symlinked:${reset}" "${symlinked[@]}"
+	print_group "${bold}${blue}Replaced:${reset}" "${replaced[@]}"
+	print_group "${bold}${red}Skipped:${reset}" "${skipped[@]}"
+}
+
+function main() {
+	local dir
+
+	dir="$(dirname "$(realpath "${0}")")"
+	while IFS= read -rd '' file; do
+		local target="${dir}/${file#./}"
+		local link="${HOME}/.${file#./}"
+		check_link "${target}" "${link}"
+	done < <(find "$(dirname "${0}")" \
+		-type f -not -path '*/\.*' \
+		-type f -not -path './README.md' \
+		-not -path "${0}" \
+		-print0 |
+		sort -z)
+
+	print_summary
+}
+
+main

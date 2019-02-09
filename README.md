@@ -4,8 +4,16 @@ My environment configuration.
 
 ## Installation
 
-Run `./install.sh`.
-The installation script will prompt before replacing any existing files.
+Run `./install.sh`. The installation script will prompt before replacing any
+existing files. It is idempotent and can be used to ensure that all relevant
+files are links to this repository.
+
+It uses a simple convention to map all files in this repository as it would be
+a HOME directory. A small caveat is that it skips hidden files (`.git`,
+`.gitignore`, ...) and precedes all paths with `.` (dot). For example:
+
+- `bashrc` is mapped to `${HOME}/.bashrc'
+- `config/tilix/schemes` is mapped to `${HOME}/.config/tilix/schemes'
 
 ## Troubleshooting
 
