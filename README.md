@@ -9,11 +9,11 @@ existing files. It is idempotent and can be used to ensure that all relevant
 files are links to this repository.
 
 It uses a simple convention to map all files in this repository as it would be
-a HOME directory. A small caveat is that it skips hidden files (`.git`,
+a `HOME` directory. A small caveat is that it skips hidden files (`.git`,
 `.gitignore`, ...) and precedes all paths with `.` (dot). For example:
 
-- `bashrc` is mapped to `${HOME}/.bashrc'
-- `config/tilix/schemes` is mapped to `${HOME}/.config/tilix/schemes'
+- `bashrc` is mapped to `${HOME}/.bashrc`
+- `config/tilix/schemes` is mapped to `${HOME}/.config/tilix/schemes`
 
 ## Troubleshooting
 
@@ -22,17 +22,21 @@ a HOME directory. A small caveat is that it skips hidden files (`.git`,
 Ensure that `gnome-keyring-daemon` does not start with ssh component.
 In Ubuntu/Debian you can check the output of command:
 
-```
-grep gnome-keyring-daemon /etc/xdg/autostart/gnome-keyring-*
+```bash
+$ grep gnome-keyring-daemon /etc/xdg/autostart/gnome-keyring-*
+
+/etc/xdg/autostart/gnome-keyring-pkcs11.desktop:Exec=/usr/bin/gnome-keyring-daemon --start --components=pkcs11
+/etc/xdg/autostart/gnome-keyring-secrets.desktop:Exec=/usr/bin/gnome-keyring-daemon --start --components=secrets
+/etc/xdg/autostart/gnome-keyring-ssh.desktop:Exec=/usr/bin/gnome-keyring-daemon --start --components=ssh
 ```
 
 If you see an entry with `ssh` component then remove the file:
 
-```
-/etc/xdg/autostart/gnome-keyring-ssh.desktop:Exec=/usr/bin/gnome-keyring-daemon --start --components=ssh
+```bash
+sudo rm /etc/xdg/autostart/gnome-keyring-ssh.desktop
 ```
 
-or the component from the list.
+or remove only the component `ssh` from the list:
 
 ```diff
 -Exec=/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
