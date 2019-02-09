@@ -7,6 +7,8 @@ fi
 
 set -euo pipefail
 
+declare -a symlinked replaced skipped new
+
 function check_link() {
 	local target=${1}
 	local link=${2}
