@@ -43,6 +43,9 @@ check_link "${dir}/gnupg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
 mkdir -p "${HOME}/.config/tilix"
 check_link "${dir}/config/tilix/schemes" "${HOME}/.config/tilix/schemes"
 
+mkdir -p "${HOME}/.config/Code/User"
+check_link "${dir}/config/Code/User/settings.json" "${HOME}/.config/Code/User/settings.json"
+
 function use_colors {
 	case "${TERM}" in
 		xterm-color|*-256color) return 0;;
