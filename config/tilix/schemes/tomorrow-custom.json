@@ -1,0 +1,26 @@
+{
+    "name": "Tomorrow (custom)",
+    "comment": "Modified base16 tomorrow theme",
+    "use-theme-colors": false,
+    "foreground-color": "#3e3e3e",
+    "background-color": "#fafafa",
+    "palette": [
+        "#000000",
+        "#c82829",
+        "#718c00",
+        "#eab700",
+        "#4271ae",
+        "#8959a8",
+        "#3e999f",
+        "#ffffff",
+        "#000000",
+        "#c82829",
+        "#718c00",
+        "#eab700",
+        "#4271ae",
+        "#8959a8",
+        "#3e999f",
+        "#ffffff"
+    ]
+}
+

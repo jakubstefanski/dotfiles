@@ -40,6 +40,9 @@ mkdir -p "${HOME}/.gnupg"
 check_link "${dir}/gnupg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
 check_link "${dir}/gnupg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
 
+mkdir -p "${HOME}/.config/tilix"
+check_link "${dir}/config/tilix/schemes" "${HOME}/.config/tilix/schemes"
+
 function use_colors {
 	case "${TERM}" in
 		xterm-color|*-256color) return 0;;
