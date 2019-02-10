@@ -97,6 +97,9 @@ function custom_prompt {
 		reset='\[\e[0m\]'
 	fi
 
+	# http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#s3
+	local title="\[\e]2;\u"
+
 	local mark='$'
 	local user="${bold}\u"
 	if [ "${UID}" = 0 ]; then
@@ -105,8 +108,10 @@ function custom_prompt {
 	fi
 	if [[ -n "${SSH_CONNECTION}" ]] || [ -f /.dockerenv ]; then
 		user+="@\h"
+		title+="@\h"
 	fi
 	user+="${reset}"
+	title+=" \w\a\]"
 
 	local workdir="${blue}\w${reset}"
 
@@ -120,9 +125,6 @@ function custom_prompt {
 	if command -v __vte_osc7 &>/dev/null; then
 		vtefix="\[$(__vte_osc7)\]"
 	fi
-
-	# http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#s3
-	local title='\[\e]2;\u@\h:\w\a\]'
 
 	export PS1="${vtefix}${title}${user} ${workdir} ${sign} "
 }
