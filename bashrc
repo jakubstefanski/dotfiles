@@ -116,12 +116,15 @@ function custom_prompt {
 	fi
 
 	# https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
-	local vte_fix=''
+	local vtefix=''
 	if command -v __vte_osc7 &>/dev/null; then
-		vte_fix="\[$(__vte_osc7)\]"
+		vtefix="\[$(__vte_osc7)\]"
 	fi
 
-	PS1="${user} ${workdir} ${sign} ${vte_fix}"
+	# http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#s3
+	local title='\[\e]2;\u@\h:\w\a\]'
+
+	export PS1="${vtefix}${title}${user} ${workdir} ${sign} "
 }
 
 PROMPT_COMMAND="custom_prompt"
