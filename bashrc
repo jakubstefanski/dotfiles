@@ -113,6 +113,11 @@ function custom_prompt {
 	user+="${reset}"
 	title+=" \w\a\]"
 
+	case ${TERM} in
+		xterm*) ;;
+		*) title='' ;; # remove title sequence in non-xterm shells
+	esac
+
 	local workdir="${blue}\w${reset}"
 
 	local sign="${mark}"
