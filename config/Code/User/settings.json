@@ -5,6 +5,7 @@
     "editor.fontFamily": "'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace'",
     "editor.fontSize": 13,
     "editor.renderWhitespace": "boundary",
+    "explorer.confirmDelete": false,
     "files.autoSave": "onFocusChange",
     "html.autoClosingTags": false,
     "javascript.autoClosingTags": false,
