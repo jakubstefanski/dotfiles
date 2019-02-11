@@ -79,7 +79,7 @@ hi default link User4 Title
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\ if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" |
 			\   exe "normal! g`\"" |
 			\ endif
 
