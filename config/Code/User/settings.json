@@ -1,9 +1,8 @@
 {
     "breadcrumbs.enabled": true,
-    "dotnet-test-explorer.enableTelemetry": false,
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
-    "editor.fontFamily": "'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace'",
     "editor.fontSize": 13,
     "editor.renderWhitespace": "boundary",
     "files.autoSave": "onFocusChange",
@@ -12,11 +11,44 @@
     "javascript.validate.enable": false,
     "raml.previewTheme": "light",
     "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
     "typescript.autoClosingTags": false,
     "vim.easymotion": true,
+    "vim.handleKeys": {
+        "<C-k>": false
+    },
     "vim.history": 500,
     "vim.hlsearch": true,
-    "vim.leader": " ",
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "leader",
+                "n"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.quickOpenPreviousEditor"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "l"
+            ],
+            "commands": [
+                "revealInExplorer"
+            ]
+        }
+    ],
     "vim.surround": false,
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
