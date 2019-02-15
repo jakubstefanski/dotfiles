@@ -131,7 +131,7 @@ function custom_prompt() {
 		vtefix="\[$(__vte_osc7)\]"
 	fi
 
-	export PS1="${vtefix}${title}${user} ${workdir} ${sign} "
+	export PS1="${vtefix}${title}${user} ${workdir}\n${sign} "
 }
 
 PROMPT_COMMAND="custom_prompt"
