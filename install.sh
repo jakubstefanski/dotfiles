@@ -9,7 +9,7 @@ set -euo pipefail
 
 declare -a symlinked replaced skipped new
 
-function check_link() {
+function ensure_link() {
 	local target=${1}
 	local link=${2}
 
@@ -84,15 +84,11 @@ function main() {
 
 	dir="$(dirname "$(realpath "${0}")")"
 	while IFS= read -rd '' file; do
-		local target="${dir}/${file#./}"
-		local link="${HOME}/.${file#./}"
-		check_link "${target}" "${link}"
-	done < <(find "$(dirname "${0}")" -type f \
-		-not -path '*/\.*' \
-		-not -path './README.md' \
-		-not -path "${0}" \
-		-print0 |
-		sort -z)
+		local relpath=${file#./home/}
+		local target="${dir}/home/${relpath}"
+		local link="${HOME}/.${relpath}"
+		ensure_link "${target}" "${link}"
+	done < <(find "$(dirname "${0}")/home" -type f -print0 | sort -z)
 
 	print_summary
 }
