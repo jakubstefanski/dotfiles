@@ -23,31 +23,16 @@
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": [
-                "leader",
-                "n"
-            ],
-            "commands": [
-                ":nohl"
-            ]
+            "before": ["leader", "n"],
+            "commands": [":nohl"]
         },
         {
-            "before": [
-                "leader",
-                "t"
-            ],
-            "commands": [
-                "workbench.action.quickOpenPreviousEditor"
-            ]
+            "before": ["leader", "t"],
+            "commands": ["workbench.action.quickOpenPreviousEditor"]
         },
         {
-            "before": [
-                "leader",
-                "l"
-            ],
-            "commands": [
-                "revealInExplorer"
-            ]
+            "before": ["leader", "l"],
+            "commands": ["revealInExplorer"]
         }
     ],
     "vim.surround": false,
