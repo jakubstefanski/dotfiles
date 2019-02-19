@@ -1,3 +1,5 @@
+[core]
+	excludesfile = "~/.cvsignore"
 [user]
 	name = "Jakub Stefanski"
 	email = "js@jakubstefanski.com"
