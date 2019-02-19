@@ -14,25 +14,33 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "typescript.autoClosingTags": false,
+    "vim.changeWordIncludesWhitespace": true,
     "vim.easymotion": true,
     "vim.handleKeys": {
-        "<C-k>": false
+        "<C-j>": false,
+        "<C-k>": false,
+        "<C-b>": false,
+        "<C-f>": false
     },
     "vim.history": 500,
     "vim.hlsearch": true,
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["leader", "n"],
+            "before": ["<leader>", "n"],
             "commands": [":nohl"]
         },
         {
-            "before": ["leader", "t"],
+            "before": ["<leader>", "t"],
             "commands": ["workbench.action.quickOpenPreviousEditor"]
         },
         {
-            "before": ["leader", "l"],
+            "before": ["<leader>", "l"],
             "commands": ["revealInExplorer"]
+        },
+        {
+            "before": ["<leader>", "w"],
+            "after": ["<C-w>"]
         }
     ],
     "vim.surround": false,
