@@ -16,14 +16,15 @@ function ensure_link() {
 	if [ "${target}" -ef "${link}" ]; then
 		symlinked+=("${link}")
 	elif [ -e "${link}" ]; then
-		read -r -p "replace '${link}'? [y/N] "
-		if [[ ${REPLY,,} =~ ^[Yy]([Ee][Ss])?$ ]]; then
+		read -r -p "replace '${link}'? [y/N] " answer </dev/tty
+		case ${answer:0:1} in
+		y | Y | yes | YES)
 			rm -rf "${link}"
 			ln -sf "${target}" "${link}"
 			replaced+=("${link}")
-		else
-			skipped+=("${link}")
-		fi
+			;;
+		*) skipped+=("${link}") ;;
+		esac
 	else
 		mkdir -p "$(dirname "${link}")"
 		ln -sf "${target}" "${link}"
