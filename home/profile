@@ -2,13 +2,14 @@
 
 # Executed by the command interpreter for login shells.
 
-# if running bash
 if [ -n "${BASH_VERSION}" ]; then
 	if [ -f "${HOME}/.bashrc" ]; then
 		# shellcheck source=/dev/null
 		. "${HOME}/.bashrc"
 	fi
 fi
+
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # set up SSH authentication using GPG keys
 GPG_TTY=$(tty)
