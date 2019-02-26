@@ -4,9 +4,11 @@
     "editor.autoClosingQuotes": "never",
     "editor.fontFamily": "'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace'",
     "editor.fontSize": 13,
+    "editor.minimap.enabled": false,
     "editor.renderWhitespace": "boundary",
     "explorer.confirmDelete": false,
     "files.autoSave": "onFocusChange",
+    "gitlens.advanced.telemetry.enabled": false,
     "html.autoClosingTags": false,
     "javascript.autoClosingTags": false,
     "javascript.validate.enable": false,
@@ -29,10 +31,6 @@
         {
             "before": ["<leader>", "n"],
             "commands": [":nohl"]
-        },
-        {
-            "before": ["<leader>", "t"],
-            "commands": ["workbench.action.quickOpenPreviousEditor"]
         },
         {
             "before": ["<leader>", "l"],

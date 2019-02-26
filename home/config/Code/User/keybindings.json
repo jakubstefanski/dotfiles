@@ -2,5 +2,13 @@
     {
         "key": "ctrl+shift+'",
         "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm"
+    },
+    {
+        "key": "ctrl+shift+g g",
+        "command": "workbench.view.extension.gitlens"
     }
 ]
