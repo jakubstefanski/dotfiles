@@ -6,3 +6,12 @@
 	signingkey = "58644CF257490316"
 [commit]
 	gpgsign = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
