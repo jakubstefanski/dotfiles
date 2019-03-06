@@ -4,6 +4,9 @@
 # Ignore VS Code files
 .vscode/
 
+# Ignore Tern files
+.tern-port
+
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
 TAGS
 .TAGS
