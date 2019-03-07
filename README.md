@@ -5,8 +5,8 @@ My environment configuration.
 ## Installation
 
 Run `./install.sh`. The script will prompt before replacing any existing
-files. It is idempotent and can be used to ensure that all relevant files are
-links to this repository.
+files or dconf entries. It is idempotent and can be used to ensure that all
+relevant files are links to this repository and dconf database matches.
 
 It uses a simple convention to map all files in `home` directory as it would
 be a user `${HOME}` directory. Notice that that it precedes all relative
