@@ -13,6 +13,7 @@
     "javascript.autoClosingTags": false,
     "javascript.validate.enable": false,
     "raml.previewTheme": "light",
+    "search.smartCase": true,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "typescript.autoClosingTags": false,
@@ -29,21 +30,44 @@
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+            "before": ["g", "o"],
+            "commands": ["extension.quickOpenFile"]
+        },
+        {
             "before": ["<leader>", "n"],
             "commands": [":nohl"]
         },
         {
-            "before": ["<leader>", "l"],
+            "before": ["<leader>", "w"],
+            "after": ["<C-w>"]
+        },
+        {
+            "before": ["<leader>", "f", "f"],
             "commands": ["revealInExplorer"]
         },
         {
-            "before": ["<leader>", "w"],
-            "after": ["<C-w>"]
+            "before": ["<leader>", "f", "y"],
+            "commands": ["copyRelativeFilePath"]
+        },
+        {
+            "before": ["<leader>", "f", "Y"],
+            "commands": ["copyFilePath"]
+        },
+        {
+            "before": ["<leader>", "t", "o"],
+            "commands": ["workbench.action.closeOtherEditors"]
         }
     ],
     "vim.surround": false,
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["g", "o"],
+            "commands": ["extension.quickOpen.withPrefill"]
+        },
+    ],
     "window.restoreWindows": "none",
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Default Light+",
-    "workbench.statusBar.feedback.visible": false
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.statusBar.feedback.visible": false,
 }
