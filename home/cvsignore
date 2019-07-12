@@ -7,6 +7,15 @@
 # Ignore Tern files
 .tern-port
 
+# Ignore Vim files
+.netrwhist
+*~
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
 TAGS
 .TAGS
