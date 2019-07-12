@@ -94,9 +94,10 @@ au TabLeave * let g:lasttab = tabpagenr()
 " Leader bindings
 set notimeout
 let mapleader = " "
-nnoremap <Leader>b :exe "b ".g:lastbuf<CR>
+nnoremap <Leader><tab> :exe "b ".g:lastbuf<CR>
 nnoremap <Leader>t :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>n :nohl<CR>
+nnoremap <Leader>w <c-w>
 
 " Highlight trailing whitespaces
 highlight TrailingWhitespaces ctermbg=Red guibg=Red
