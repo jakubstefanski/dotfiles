@@ -2,11 +2,16 @@
 
 id=$(xinput list | grep -Eo 'TouchPad\s*id\=[0-9]+' | grep -Eo '[0-9]+')
 state=$(xinput list-props "${id}" | grep 'Device Enabled' | awk '{print $4}')
+if command -v notify-send &>/dev/null; then
+	notify='notify-send'
+else
+	notify='echo'
+fi
 
 if [ "${state}" -eq 1 ]; then
 	xinput disable "${id}"
-	echo "Touchpad disabled"
+	${notify} 'Touchpad disabled'
 else
 	xinput enable "${id}"
-	echo "Touchpad enabled"
+	${notify} 'Touchpad enabled'
 fi
