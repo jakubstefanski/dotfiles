@@ -44,7 +44,7 @@ function ensure_dconf() {
 	trap "rm -f ${currentconf}" EXIT
 
 	dconf dump "${confpath}" >"${currentconf}"
-	if ! cmp -s "${currentconf}" "${desiredconf}"; then
+	if ! diff -u --color=always "${currentconf}" "${desiredconf}"; then
 		read -r -p "load ${confpath} [y/N] " answer </dev/tty
 		case ${answer:0:1} in
 		y | Y | yes | YES)
