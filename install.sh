@@ -38,13 +38,18 @@ function ensure_dconf() {
 	local desiredconf=${2}       # path to desired configuration in dump format
 	local currentconf            # path to a temporary dump of current configuration
 	local id="dconf ${confpath}" # id for printing summary
-	currentconf=$(mktemp)
+	local color='never'
 
+	if should_use_colors; then
+		color='always'
+	fi
+
+	currentconf=$(mktemp)
 	# shellcheck disable=SC2064
 	trap "rm -f ${currentconf}" EXIT
 
 	dconf dump "${confpath}" >"${currentconf}"
-	if ! diff -u --color=always "${currentconf}" "${desiredconf}"; then
+	if ! diff -u --color="${color}" "${currentconf}" "${desiredconf}"; then
 		read -r -p "load ${confpath} [y/N] " answer </dev/tty
 		case ${answer:0:1} in
 		y | Y | yes | YES)
