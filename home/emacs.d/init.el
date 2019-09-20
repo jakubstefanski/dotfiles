@@ -64,8 +64,22 @@
 ;; ------------
 ;; Convenience
 ;; ------------
+
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(defun toggle-term ()
+  "Toggle between terminal and current buffer."
+  (interactive)
+  (if (string= (buffer-name) "*ansi-term*")
+      (switch-to-buffer (other-buffer (current-buffer)))
+    (if (get-buffer "*ansi-term*")
+	(switch-to-buffer "*ansi-term*")
+      (progn
+	(ansi-term (getenv "SHELL"))
+	(setq show-trailing-whitespace nil)))))
+
+(global-set-key (kbd  "C-`") 'toggle-term)
 
 ;; -----------
 ;; Extensions
@@ -75,6 +89,12 @@
   :ensure t
   :config
   (evil-mode 1))
+
+(use-package smart-mode-line
+  :ensure t
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (sml/setup))
 
 (use-package company
   :ensure t
@@ -110,7 +130,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (flycheck swiper counsel ivy evil use-package))))
+ '(package-selected-packages
+   (quote
+    (smart-mode-line flycheck swiper counsel ivy evil use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
