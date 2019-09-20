@@ -77,5 +77,8 @@
         "hlsearch",
         "monospace",
         "nohl"
-    ]
+    ],
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }
