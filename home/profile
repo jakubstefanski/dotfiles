@@ -2,6 +2,7 @@
 
 # Executed by the command interpreter for login shells
 
+# source bashrc
 if [ -n "${BASH_VERSION}" ]; then
 	if [ -f "${HOME}/.bashrc" ]; then
 		# shellcheck source=/dev/null
@@ -9,10 +10,8 @@ if [ -n "${BASH_VERSION}" ]; then
 	fi
 fi
 
+# add user-only binaries
 export PATH="${HOME}/.local/bin:${PATH}"
-
-# fck off MS
-export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # set up SSH authentication using GPG keys
 GPG_TTY=$(tty)
@@ -21,3 +20,7 @@ SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 unset SSH_AGENT_PID
 export GPG_TTY
 export SSH_AUTH_SOCK
+
+# set up dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export PATH="${HOME}/.dotnet/tools:${PATH}"
