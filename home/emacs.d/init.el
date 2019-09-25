@@ -91,7 +91,7 @@
   (load-theme 'base16-gruvbox-light-hard t))
 
 (if (window-system)
-  (set-frame-font "DejaVu Sans Mono 11"))
+  (set-frame-font "DejaVu Sans Mono 10"))
 
 (use-package evil
   :ensure t
