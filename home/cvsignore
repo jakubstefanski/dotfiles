@@ -2,7 +2,7 @@
 .idea/
 
 # Ignore VS Code files
-.vscode/
+.vscode/*
 
 # Ignore Tern files
 .tern-port
