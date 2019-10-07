@@ -70,12 +70,6 @@
 (defvar show-paren-delay 0)
 (defvar blink-matching-paren nil)
 (defvar show-paren-style 'parenthesis)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(show-paren-match ((t (:underline nil)))))
 
 (if (window-system)
     (progn (set-frame-font "DejaVu Sans Mono")
@@ -169,6 +163,12 @@
    (quote
     (spacemacs-theme smart-mode-line flycheck swiper counsel ivy evil use-package))))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(show-paren-match ((t (:underline nil)))))
 
 (provide 'init.el)
 ;;; init.el ends here
