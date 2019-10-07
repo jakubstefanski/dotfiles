@@ -10,8 +10,8 @@ if [ -n "${BASH_VERSION}" ]; then
 	fi
 fi
 
-# add user-only binaries
-export PATH="${HOME}/.local/bin:${PATH}"
+# add local and go specific binaries
+export PATH="${HOME}/.local/bin:/usr/local/go/bin:${PATH}"
 
 # set up SSH authentication using GPG keys
 GPG_TTY=$(tty)
