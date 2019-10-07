@@ -71,6 +71,10 @@
 (defvar blink-matching-paren nil)
 (defvar show-paren-style 'parenthesis)
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(show-paren-match ((t (:underline nil)))))
 
 (if (window-system)
@@ -107,8 +111,19 @@
 
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-d-scroll t)
+  (setq evil-want-C-i-jump t)
   :config
   (evil-mode 1))
+
+(use-package evil-numbers
+  :ensure t
+  :defer t
+  :init
+  (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt))
 
 (use-package smart-mode-line
   :ensure t
@@ -153,12 +168,7 @@
  '(package-selected-packages
    (quote
     (spacemacs-theme smart-mode-line flycheck swiper counsel ivy evil use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
 
 (provide 'init.el)
 ;;; init.el ends here
