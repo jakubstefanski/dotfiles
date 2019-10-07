@@ -62,6 +62,17 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
+;; ------------
+;; Parenthesis
+;; ------------
+
+(show-paren-mode t)
+(defvar show-paren-delay 0)
+(defvar blink-matching-paren nil)
+(defvar show-paren-style 'parenthesis)
+(custom-set-faces
+ '(show-paren-match ((t (:underline nil)))))
+
 (if (window-system)
     (progn (set-frame-font "DejaVu Sans Mono")
            (set-face-attribute 'default nil :height 105)))
