@@ -62,6 +62,10 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
+(if (window-system)
+    (progn (set-frame-font "DejaVu Sans Mono")
+           (set-face-attribute 'default nil :height 105)))
+
 ;; ------------
 ;; Parenthesis
 ;; ------------
@@ -70,10 +74,6 @@
 (defvar show-paren-delay 0)
 (defvar blink-matching-paren nil)
 (defvar show-paren-style 'parenthesis)
-
-(if (window-system)
-    (progn (set-frame-font "DejaVu Sans Mono")
-           (set-face-attribute 'default nil :height 105)))
 
 ;; ------------
 ;; Convenience
@@ -103,14 +103,16 @@
   :defer t
   :init (load-theme 'spacemacs-light t))
 
-(use-package evil
+(use-package evil-leader
   :ensure t
-  :init
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-d-scroll t)
-  (setq evil-want-C-i-jump t)
+  :defer t
   :config
-  (evil-mode 1))
+  (global-evil-leader-mode)
+  (evil-leader/set-leader "<SPC>"))
+
+(use-package evil-magit
+  :ensure t
+  :defer t)
 
 (use-package evil-numbers
   :ensure t
@@ -118,6 +120,17 @@
   :init
   (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt))
+
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-d-scroll t)
+  (setq evil-want-C-i-jump t)
+  :config
+  (evil-mode 1)
+  (evil-leader/set-key
+    "gs" 'magit-status))
 
 (use-package smart-mode-line
   :ensure t
@@ -161,7 +174,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (spacemacs-theme smart-mode-line flycheck swiper counsel ivy evil use-package))))
+    (evil-leader evil-magit spacemacs-theme smart-mode-line flycheck swiper counsel ivy evil use-package))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
