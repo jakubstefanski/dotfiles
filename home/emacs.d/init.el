@@ -106,6 +106,7 @@
 (use-package evil-leader
   :ensure t
   :defer t
+  :commands (evil-leader/set-leader)
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>"))
