@@ -118,15 +118,13 @@
   :ensure t
   :defer t
   :init
-  (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt))
+  (global-set-key (kbd "C-c +") 'evil-numbers/inc-at-pt)
+  (global-set-key (kbd "C-c -") 'evil-numbers/dec-at-pt))
 
 (use-package evil
   :ensure t
   :init
   (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-d-scroll t)
-  (setq evil-want-C-i-jump t)
   :config
   (evil-mode 1)
   (evil-leader/set-key
