@@ -62,9 +62,11 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-(if (window-system)
-    (progn (set-frame-font "DejaVu Sans Mono")
-           (set-face-attribute 'default nil :height 105)))
+(when window-system
+  (set-frame-font "DejaVu Sans Mono")
+  (set-face-attribute 'default nil :height 105)
+  (set-frame-position (selected-frame) 0 0)
+  (set-frame-size (selected-frame) 140 50))
 
 ;; ------------
 ;; Parenthesis
