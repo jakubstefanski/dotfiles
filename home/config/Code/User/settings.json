@@ -1,5 +1,14 @@
 {
     "breadcrumbs.enabled": true,
+    "cSpell.userWords": [
+        "cors",
+        "easymotion",
+        "gitlens",
+        "hlsearch",
+        "monospace",
+        "nohl",
+        "prefill"
+    ],
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
     "editor.fontFamily": "'DejaVu Sans Mono', 'Droid Sans Mono', 'monospace'",
@@ -10,6 +19,7 @@
     "explorer.confirmDelete": false,
     "files.autoSave": "onFocusChange",
     "gitlens.advanced.telemetry.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
     "html.autoClosingTags": false,
     "javascript.autoClosingTags": false,
     "javascript.validate.enable": false,
@@ -70,24 +80,19 @@
     "workbench.colorTheme": "Default Light+",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.enablePreview": false,
-    "cSpell.userWords": [
-        "prefill",
-        "easymotion",
-        "gitlens",
-        "hlsearch",
-        "monospace",
-        "nohl"
-    ],
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "[typescriptreact]": {
+    "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
