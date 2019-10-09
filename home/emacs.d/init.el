@@ -65,7 +65,6 @@
 (when window-system
   (set-frame-font "DejaVu Sans Mono")
   (set-face-attribute 'default nil :height 105)
-  (set-frame-position (selected-frame) 0 0)
   (set-frame-size (selected-frame) 140 50))
 
 ;; ------------
@@ -104,6 +103,11 @@
   :ensure t
   :defer t
   :init (load-theme 'spacemacs-light t))
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  :hook (after-init . doom-modeline-mode))
 
 (use-package evil-leader
   :ensure t
