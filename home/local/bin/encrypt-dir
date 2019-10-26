@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+if ((${BASH_VERSION%%.*} < 4)); then
+	echo "$(basename "${0}") requires Bash version 4 or later" 1>&2
+	exit 1
+fi
+
+set -euo pipefail
+
+if ! [ "$#" -eq 1 ]; then
+	echo "$(basename "${0}"): expecting a single argument with the directory path"
+	exit 1
+fi
+
+if ! [ -x "$(command -v mcrypt)" ]; then
+	echo 'mcrypt not found' 1>&2
+	exit 1
+fi
+
+DIR_NAME="$(basename "${1}")"
+PARENT_DIR="$(dirname "$(realpath "${1}")")"
+DIR_PATH="${PARENT_DIR}/${DIR_NAME}"
+OUTPUT="$(basename "${DIR_NAME}").tar.gz.nc"
+
+if ! [ -d "${DIR_PATH}" ]; then
+	echo "$(basename "${0}"): ${DIR_PATH} is not a directory" 1>&2
+	exit 1
+fi
+
+echo "Encrypting ${DIR_PATH}"
+
+tar --directory "${PARENT_DIR}/" \
+	--ignore-failed-read \
+	-cz "${DIR_NAME}" \
+	| mcrypt > "${OUTPUT}"
+
+echo "Wrote encrypted archive to file ${OUTPUT}"
