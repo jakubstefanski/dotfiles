@@ -19,6 +19,11 @@ function main() {
 	case ${answer:0:1} in
 	y | Y | yes | YES) "${DIR}/scripts/install-dconf.sh" ;;
 	esac
+
+	read -r -p "install software [y/N] " answer </dev/tty
+	case ${answer:0:1} in
+	y | Y | yes | YES) "${DIR}/scripts/install-software.sh" ;;
+	esac
 }
 
 main "$@"
