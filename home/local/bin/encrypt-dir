@@ -20,18 +20,27 @@ fi
 DIR_NAME="$(basename "${1}")"
 PARENT_DIR="$(dirname "$(realpath "${1}")")"
 DIR_PATH="${PARENT_DIR}/${DIR_NAME}"
-OUTPUT="$(basename "${DIR_NAME}").tar.gz.nc"
+OUTPUT_PATH="$(basename "${DIR_NAME}").tar.gz.gpg"
 
 if ! [ -d "${DIR_PATH}" ]; then
 	echo "$(basename "${0}"): ${DIR_PATH} is not a directory" 1>&2
 	exit 1
 fi
 
-echo "Encrypting ${DIR_PATH}"
+DIR_SIZE="$(du -hs "${DIR_PATH}" | cut -f -1 || true)"
 
-tar --directory "${PARENT_DIR}/" \
+echo "Encrypting directory ${DIR_PATH} (${DIR_SIZE})"
+
+tar \
+	--directory "${PARENT_DIR}/" \
 	--ignore-failed-read \
-	-cz "${DIR_NAME}" \
-	| mcrypt > "${OUTPUT}"
+	--create --gzip "${DIR_NAME}" \
+	| pv \
+	| gpg \
+	--pinentry-mode loopback \
+	--symmetric \
+	--output "${OUTPUT_PATH}"
 
-echo "Wrote encrypted archive to file ${OUTPUT}"
+OUTPUT_SIZE="$(du -h "${OUTPUT_PATH}" | cut -f -1)"
+
+echo "Wrote encrypted archive to ${OUTPUT_PATH} (${OUTPUT_SIZE})"
