@@ -27,9 +27,8 @@ case $EUID in
 esac
 
 apt-get update
-
 apt-get install git tig direnv ranger
-apt-get install secure-delete pv
+apt-get install secure-delete pv moreutils
 apt-get install ecryptfs-utils pass
 apt-get install gnupg2 scdaemon
 apt-get install lm-sensors gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 gir1.2-clutter-1.0
