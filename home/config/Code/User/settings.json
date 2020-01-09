@@ -33,7 +33,8 @@
         "<C-j>": false,
         "<C-k>": false,
         "<C-b>": false,
-        "<C-f>": false
+        "<C-f>": false,
+        "<C-t>": false
     },
     "vim.history": 500,
     "vim.hlsearch": true,
@@ -94,5 +95,7 @@
     },
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "go.formatTool": "goimports",
+    "extensions.ignoreRecommendations": true
 }
