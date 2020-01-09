@@ -7,6 +7,12 @@
 # Ignore Tern files
 .tern-port
 
+# Ignore Emacs files
+*~
+\#*\#
+.\#*
+.projectile
+
 # Ignore Vim files
 .netrwhist
 *~
