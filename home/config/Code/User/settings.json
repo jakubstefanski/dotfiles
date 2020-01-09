@@ -17,9 +17,12 @@
     "editor.renderWhitespace": "boundary",
     "editor.suggestSelection": "first",
     "explorer.confirmDelete": false,
+    "extensions.ignoreRecommendations": true,
     "files.autoSave": "onFocusChange",
     "gitlens.advanced.telemetry.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": true,
     "html.autoClosingTags": false,
     "javascript.autoClosingTags": false,
     "javascript.validate.enable": false,
@@ -95,7 +98,5 @@
     },
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "go.formatTool": "goimports",
-    "extensions.ignoreRecommendations": true
+    }
 }
