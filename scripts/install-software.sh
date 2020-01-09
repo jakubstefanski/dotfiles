@@ -27,7 +27,7 @@ case $EUID in
 esac
 
 apt-get update
-apt-get install git tig direnv ranger jq silversearcher-ag
+apt-get install git tig direnv ranger fzy jq silversearcher-ag
 apt-get install secure-delete pv moreutils net-tools lsof
 apt-get install ecryptfs-utils pass
 apt-get install gnupg2 scdaemon
