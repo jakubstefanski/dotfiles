@@ -29,7 +29,7 @@ esac
 apt-get update
 apt-get install git tig direnv ranger fzy jq silversearcher-ag
 apt-get install secure-delete pv moreutils net-tools lsof traceroute nmap
-apt-get install ecryptfs-utils pass
+apt-get install ecryptfs-utils pass zbar-tools libqrencode3
 apt-get install gnupg2 scdaemon
 apt-get install lm-sensors gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 gir1.2-clutter-1.0
 apt-get install guvcview pavucontrol
