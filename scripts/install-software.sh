@@ -38,6 +38,6 @@ apt-get install vim-gnome dconf-editor tilix keepassxc chromium-browser
 snap refresh
 snap install shfmt
 snap install shellcheck
+snap install mdl
 snap install emacs --classic
 
-code --install-extension forbeslindesay.vscode-sql-template-literal
