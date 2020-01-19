@@ -26,18 +26,52 @@ case $EUID in
 *) exec sudo "${0}" "$@" ;;
 esac
 
-apt-get update
-apt-get install git tig direnv ranger fzy jq silversearcher-ag
-apt-get install secure-delete pv moreutils net-tools lsof traceroute nmap
-apt-get install ecryptfs-utils pass zbar-tools libqrencode3
-apt-get install gnupg2 scdaemon
-apt-get install lm-sensors gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 gir1.2-clutter-1.0
-apt-get install guvcview pavucontrol
-apt-get install vim-gnome dconf-editor tilix keepassxc chromium-browser
+apt_packages=(
+	# Basic developer tools
+	git
+	tig
+	direnv
+	ranger
+	fzy
+	jq
+	silversearcher-ag
+	# System and network tools
+	secure-delete
+	pv
+	moreutils
+	net-tools
+	lsof
+	traceroute
+	nmap
+	# Encryption tools
+	ecryptfs-utils
+	pass
+	zbar-tools
+	libqrencode3
+	# GPG tools
+	gnupg2
+	scdaemon
+	# Desktop tools
+	lm-sensors
+	gir1.2-gtop-2.0
+	gir1.2-networkmanager-1.0
+	gir1.2-clutter-1.0
+	guvcview
+	pavucontrol
+	# Desktop apps
+	vim-gnome
+	dconf-editor
+	tilix
+	keepassxc
+	chromium-browser
+)
+
+apt-get update -qq
+apt-get install -qq "${apt_packages[@]}"
 
 snap refresh
 snap install shfmt
 snap install shellcheck
 snap install mdl
+snap install hugo --channel=extended
 snap install emacs --classic
-
