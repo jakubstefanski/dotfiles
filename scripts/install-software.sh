@@ -75,3 +75,4 @@ snap install shellcheck
 snap install mdl
 snap install hugo --channel=extended
 snap install emacs --classic
+snap install gimp
