@@ -24,6 +24,7 @@
     "go.formatTool": "goimports",
     "go.useLanguageServer": true,
     "html.autoClosingTags": false,
+    "html.mirrorCursorOnMatchingTag": false,
     "javascript.autoClosingTags": false,
     "javascript.validate.enable": false,
     "search.smartCase": true,
