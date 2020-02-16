@@ -2,6 +2,18 @@
 
 declare -a matching replaced skipped new
 
+function ask_yes_no() {
+	local question="${1}"
+	local answer
+
+	read -r -p "${question} [y/N] " answer </dev/tty
+	case ${answer:0:1} in
+	y | Y | yes | YES) return 0 ;;
+	esac
+
+	return 1
+}
+
 function should_use_colors() {
 	if [[ ! -t 1 ]]; then
 		return 1 # not a terminal, for example pager

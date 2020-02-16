@@ -26,15 +26,13 @@ function ensure_link() {
 	if [ "${target}" -ef "${link}" ]; then
 		matching+=("${id}")
 	elif [ -e "${link}" ]; then
-		read -r -p "replace ${link} [y/N] " answer </dev/tty
-		case ${answer:0:1} in
-		y | Y | yes | YES)
+		if ask_yes_no "replace ${link}"; then
 			rm -rf "${link}"
 			ln -sf "${target}" "${link}"
 			replaced+=("${id}")
-			;;
-		*) skipped+=("${id}") ;;
-		esac
+		else
+			skipped+=("${id}")
+		fi
 	else
 		mkdir -p "$(dirname "${link}")"
 		ln -sf "${target}" "${link}"

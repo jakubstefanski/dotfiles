@@ -35,15 +35,13 @@ function ensure_dconf() {
 
 	dconf dump "${dconf_path}" >"${tmp_path}"
 	if ! diff -u --color="${color}" "${tmp_path}" "${dump_path}"; then
-		read -r -p "load ${dconf_path} [y/N] " answer </dev/tty
-		case ${answer:0:1} in
-		y | Y | yes | YES)
+		if ask_yes_no "load ${dconf_path}"; then
 			dconf reset -f "${dconf_path}"
 			dconf load "${dconf_path}" <"${dump_path}"
 			replaced+=("${id}")
-			;;
-		*) skipped+=("${id}") ;;
-		esac
+		else
+			skipped+=("${id}")
+		fi
 	else
 		matching+=("${id}")
 	fi

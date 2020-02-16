@@ -8,27 +8,31 @@ fi
 set -euo pipefail
 
 DIR="$(dirname "$(realpath "${0}")")"
+COMMON="${DIR}/scripts/lib-install.sh"
+if [ ! -f "${COMMON}" ]; then
+	echo "Script \"${COMMON}\" does not exist" 1>&2
+	exit 1
+fi
+
+# shellcheck source=scripts/lib-install.sh
+source "${COMMON}"
 
 function main() {
-	read -r -p "link configuration files [y/N] " answer </dev/tty
-	case ${answer:0:1} in
-	y | Y | yes | YES) "${DIR}/scripts/install-links.sh" ;;
-	esac
+	if ask_yes_no "link configuration files"; then
+		"${DIR}/scripts/install-links.sh"
+	fi
 
-	read -r -p "load dconf settings [y/N] " answer </dev/tty
-	case ${answer:0:1} in
-	y | Y | yes | YES) "${DIR}/scripts/install-dconf.sh" ;;
-	esac
+	if ask_yes_no "load dconf settings"; then
+		"${DIR}/scripts/install-dconf.sh"
+	fi
 
-	read -r -p "install Visual Studio Code extensions [y/N] " answer </dev/tty
-	case ${answer:0:1} in
-	y | Y | yes | YES) "${DIR}/scripts/install-vscode-extensions.sh" ;;
-	esac
+	if ask_yes_no "install Visual Studio Code extensions"; then
+		"${DIR}/scripts/install-vscode-extensions.sh"
+	fi
 
-	read -r -p "install software [y/N] " answer </dev/tty
-	case ${answer:0:1} in
-	y | Y | yes | YES) "${DIR}/scripts/install-software.sh" ;;
-	esac
+	if ask_yes_no "install software"; then
+		"${DIR}/scripts/install-software.sh"
+	fi
 }
 
 main "$@"
