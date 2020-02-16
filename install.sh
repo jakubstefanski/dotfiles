@@ -20,6 +20,11 @@ function main() {
 	y | Y | yes | YES) "${DIR}/scripts/install-dconf.sh" ;;
 	esac
 
+	read -r -p "install Visual Studio Code extensions [y/N] " answer </dev/tty
+	case ${answer:0:1} in
+	y | Y | yes | YES) "${DIR}/scripts/install-vscode-extensions.sh" ;;
+	esac
+
 	read -r -p "install software [y/N] " answer </dev/tty
 	case ${answer:0:1} in
 	y | Y | yes | YES) "${DIR}/scripts/install-software.sh" ;;
