@@ -15,7 +15,7 @@ extensions=(
 	streetsidesoftware.code-spell-checker
 	streetsidesoftware.code-spell-checker-polish
 	# C#
-	ms-vscode.csharp
+	ms-dotnettools.csharp
 	# C++
 	ms-vscode.cpptools
 	twxs.cmake
