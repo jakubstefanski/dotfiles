@@ -20,12 +20,10 @@ if ! [ -x "$(command -v gpg)" ]; then
 fi
 
 encrypted_tar=$(basename "$1")
-decrypted_tar=/tmp/${encrypted_tar%.gpg}
 decrypted_dir=$(pwd)/${encrypted_tar%.tar.gz.gpg}
 
-trap 'rm -f "${decrypted_tar}"' EXIT
-gpg -d "$1" >"${decrypted_tar}"
 mkdir -p "${decrypted_dir}"
-tar -xzf "${decrypted_tar}" -C "${decrypted_dir}" --strip-components 1
+gpg --pinentry-mode loopback --decrypt "$1" |
+	tar -xz -C "${decrypted_dir}" --strip-components 1
 
 echo "Decrypted and extracted to ${decrypted_dir}"
