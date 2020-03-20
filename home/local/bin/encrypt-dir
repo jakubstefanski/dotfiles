@@ -34,7 +34,7 @@ if ! [ -d "${DIR_PATH}" ]; then
 	exit 1
 fi
 
-DIR_SIZE="$(du -hs "${DIR_PATH}" | cut -f -1 || echo 'Unknown size')"
+DIR_SIZE="$(du -hs "${DIR_PATH}" 2>/dev/null | cut -f1)" || true
 
 echo "Encrypting directory ${DIR_PATH} (${DIR_SIZE})" >&2
 
