@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+PROGRAM="$(basename "${0}")"
+
+if ((${BASH_VERSION%%.*} < 4)); then
+	echo "${PROGRAM}: requires Bash version 4 or later" >&2
+	exit 1
+fi
+
+set -euo pipefail
+
+if ! [ "$#" -eq 1 ]; then
+	echo "${PROGRAM}: expecting a single argument with the encrypted tar file" >&2
+	exit 1
+fi
+
+if ! [ -x "$(command -v gpg)" ]; then
+	echo "${PROGRAM}: gpg not found" >&2
+	exit 1
+fi
+
+encrypted_tar=$(basename "$1")
+decrypted_tar=/tmp/${encrypted_tar%.gpg}
+decrypted_dir=$(pwd)/${encrypted_tar%.tar.gz.gpg}
+
+trap 'rm -f "${decrypted_tar}"' EXIT
+gpg -d "$1" >"${decrypted_tar}"
+mkdir -p "${decrypted_dir}"
+tar -xzf "${decrypted_tar}" -C "${decrypted_dir}" --strip-components 1
+
+echo "Decrypted and extracted to ${decrypted_dir}"

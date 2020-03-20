@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROGRAM="$(basename "${0}")"
+PROGRAM="$(basename "$0")"
 
 if ((${BASH_VERSION%%.*} < 4)); then
 	echo "${PROGRAM}: requires Bash version 4 or later" >&2
@@ -24,10 +24,10 @@ if ! [ -x "$(command -v pv)" ]; then
 	exit 1
 fi
 
-DIR_NAME="$(basename "${1}")"
-PARENT_DIR="$(dirname "$(realpath "${1}")")"
+DIR_NAME="$(basename "$1")"
+PARENT_DIR="$(dirname "$(realpath "$1")")"
 DIR_PATH="${PARENT_DIR}/${DIR_NAME}"
-OUTPUT_PATH="$(basename "${DIR_NAME}").tar.gz.gpg"
+OUTPUT_PATH="$(date -u +"%Y%m%d_%H%M%S")_$(basename "${DIR_NAME}").tar.gz.gpg"
 
 if ! [ -d "${DIR_PATH}" ]; then
 	echo "${PROGRAM}: ${DIR_PATH} is not a directory" >&2
@@ -38,9 +38,9 @@ DIR_SIZE="$(du -hs "${DIR_PATH}" 2>/dev/null | cut -f1)" || true
 
 echo "Encrypting directory ${DIR_PATH} (${DIR_SIZE})" >&2
 
-read -s -p "Enter passphrase: " passphrase
+read -rsp "Enter passphrase: " passphrase
 echo
-read -s -p "Repeat passphrase: " passphrase_repeat
+read -rsp "Repeat passphrase: " passphrase_repeat
 echo
 if ! [ "${passphrase}" = "${passphrase_repeat}" ]; then
 	echo "${PROGRAM}: passphrases do not match" >&2
@@ -53,13 +53,13 @@ tar \
 	--preserve-permissions --same-owner \
 	--ignore-failed-read \
 	--directory "${PARENT_DIR}/" \
-	--to-stdout "${DIR_NAME}" \
-	| pv --wait --delay-start 2 \
-	| gpg \
-	--symmetric \
-	--pinentry-mode loopback \
-	--passphrase "${passphrase}" \
-	--output "${OUTPUT_PATH}"
+	--to-stdout "${DIR_NAME}" |
+	pv --wait --delay-start 2 |
+	gpg \
+		--symmetric \
+		--pinentry-mode loopback \
+		--passphrase "${passphrase}" \
+		--output "${OUTPUT_PATH}"
 
 unset passphrase
 
