@@ -7,7 +7,8 @@
         "hlsearch",
         "monospace",
         "nohl",
-        "prefill"
+        "prefill",
+        "submodules"
     ],
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
@@ -24,12 +25,24 @@
     "go.formatTool": "goimports",
     "go.useLanguageServer": true,
     "html.autoClosingTags": false,
-    "html.mirrorCursorOnMatchingTag": false,
     "javascript.autoClosingTags": false,
     "javascript.validate.enable": false,
     "search.smartCase": true,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "terraform.indexing": {
+        "enabled": false,
+        "liveIndexing": false,
+        "delay": 500,
+        "exclude": [
+            ".terraform/**/*",
+            "**/.terraform/**/*"
+        ]
+    },
+    "terraform.languageServer": {
+        "enabled": true,
+        "args": []
+    },
     "typescript.autoClosingTags": false,
     "vim.changeWordIncludesWhitespace": true,
     "vim.easymotion": true,
