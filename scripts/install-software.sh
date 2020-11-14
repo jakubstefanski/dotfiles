@@ -61,6 +61,7 @@ apt_packages=(
 	# Desktop apps
 	vim-gtk
 	dconf-editor
+	baobab
 	tilix
 	keepassxc
 	chromium-browser
