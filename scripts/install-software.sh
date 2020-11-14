@@ -16,8 +16,8 @@ else
 	exit 1
 fi
 
-if [[ "${NAME}" != 'Ubuntu' ]] || [[ "${VERSION_ID}" != '18.04' ]]; then
-	echo "${0} is compatible only with Ubuntu 18.04" 1>&2
+if [[ "${NAME}" != 'Ubuntu' ]] || [[ "${VERSION_ID}" != '20.04' ]]; then
+	echo "${0} is compatible only with Ubuntu 20.04" 1>&2
 	exit 1
 fi
 
@@ -47,19 +47,19 @@ apt_packages=(
 	ecryptfs-utils
 	pass
 	zbar-tools
-	libqrencode3
+	libqrencode4
 	# GPG tools
 	gnupg2
 	scdaemon
+	pcscd
 	# Desktop tools
 	lm-sensors
 	gir1.2-gtop-2.0
-	gir1.2-networkmanager-1.0
 	gir1.2-clutter-1.0
 	guvcview
 	pavucontrol
 	# Desktop apps
-	vim-gnome
+	vim-gtk
 	dconf-editor
 	tilix
 	keepassxc
@@ -70,6 +70,7 @@ apt-get update -qq
 apt-get install -qq "${apt_packages[@]}"
 
 snap refresh
+snap install code --classic
 snap install shfmt
 snap install shellcheck
 snap install mdl

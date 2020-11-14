@@ -25,8 +25,6 @@ extensions=(
 	forbeslindesay.vscode-sql-template-literal
 	# Web
 	syler.sass-indented
-	# Go
-	ms-vscode.go
 	# Misc
 	ms-azuretools.vscode-docker
 	jebbs.plantuml

@@ -26,12 +26,12 @@ function main() {
 		"${DIR}/scripts/install-dconf.sh"
 	fi
 
-	if ask_yes_no "install Visual Studio Code extensions"; then
-		"${DIR}/scripts/install-vscode-extensions.sh"
-	fi
-
 	if ask_yes_no "install software"; then
 		"${DIR}/scripts/install-software.sh"
+	fi
+
+	if ask_yes_no "install Visual Studio Code extensions"; then
+		"${DIR}/scripts/install-vscode-extensions.sh"
 	fi
 }
 
