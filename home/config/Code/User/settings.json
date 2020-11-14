@@ -1,12 +1,16 @@
 {
     "breadcrumbs.enabled": true,
     "cSpell.userWords": [
+        "Favicons",
         "cors",
         "easymotion",
+        "entrypoint",
         "gitlens",
         "hlsearch",
+        "initdb",
         "monospace",
         "nohl",
+        "postgres",
         "prefill",
         "submodules"
     ],
@@ -40,8 +44,10 @@
         ]
     },
     "terraform.languageServer": {
-        "enabled": true,
-        "args": []
+        "external": true,
+        "args": [
+            "serve"
+        ]
     },
     "typescript.autoClosingTags": false,
     "vim.changeWordIncludesWhitespace": true,
