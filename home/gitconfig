@@ -8,6 +8,7 @@
 	gpgsign = true
 [diff]
 	tool = vimdiff
+	wsErrorHighlight = all
 [difftool]
 	prompt = false
 [merge]
