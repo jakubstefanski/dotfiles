@@ -127,11 +127,11 @@ function custom_prompt() {
 
 	# https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
 	local vtefix=''
-	if command -v __vte_osc7 &>/dev/null; then
+	if [ "${TILIX_ID}" ] || [ "${VTE_VERSION}" ]; then
 		vtefix="$(__vte_osc7)"
 	fi
 
-	export PS1="${title}${user} ${workdir}\n${sign}${vtefix} "
+	export PS1="${title}${user} ${workdir}${sign}${vtefix} "
 }
 
 PROMPT_COMMAND="custom_prompt"
